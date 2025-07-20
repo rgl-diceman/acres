@@ -1,0 +1,561 @@
+import React, { useState, useEffect } from 'react';
+import { Copy, ExternalLink, Users, BookOpen, Award, Globe } from 'lucide-react';
+
+const DotGrid = () => {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div
+        className="absolute inset-0 opacity-20"
+        style={{
+          backgroundImage: 'radial-gradient(circle, rgb(75 85 99) 1px, transparent 1px)',
+          backgroundSize: '20px 20px',
+          backgroundPosition: '0 0'
+        }}
+      />
+    </div>
+  );
+};
+
+const PixelArt = ({ className = "", size = 32 }) => {
+  const pixels = [
+    [0,0,1,1,1,1,0,0],
+    [0,1,1,1,1,1,1,0],
+    [1,1,0,1,1,0,1,1],
+    [1,1,1,1,1,1,1,1],
+    [1,1,1,0,0,1,1,1],
+    [1,1,1,1,1,1,1,1],
+    [0,1,1,1,1,1,1,0],
+    [0,0,1,1,1,1,0,0]
+  ];
+
+  return (
+    <div className={`inline-block ${className}`}>
+      {pixels.map((row, y) => (
+        <div key={y} className="flex">
+          {row.map((pixel, x) => (
+            <div
+              key={x}
+              className={`w-1 h-1 ${pixel ? 'bg-green-400' : 'bg-transparent'}`}
+              style={{ width: `${size/8}px`, height: `${size/8}px` }}
+            />
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+const PixelCoin = ({ className = "", size = 24 }) => {
+  const pixels = [
+    [0,1,1,1,1,1,0],
+    [1,1,0,1,0,1,1],
+    [1,0,1,1,1,0,1],
+    [1,1,1,1,1,1,1],
+    [1,0,1,1,1,0,1],
+    [1,1,0,1,0,1,1],
+    [0,1,1,1,1,1,0]
+  ];
+
+  return (
+    <div className={`inline-block ${className}`}>
+      {pixels.map((row, y) => (
+        <div key={y} className="flex">
+          {row.map((pixel, x) => (
+            <div
+              key={x}
+              className={`${pixel ? 'bg-yellow-400' : 'bg-transparent'}`}
+              style={{ width: `${size/7}px`, height: `${size/7}px` }}
+            />
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+const PixelComputer = ({ className = "", size = 32 }) => {
+  const pixels = [
+    [0,0,1,1,1,1,0,0],
+    [0,1,0,0,0,0,1,0],
+    [1,0,1,0,0,1,0,1],
+    [1,0,0,1,1,0,0,1],
+    [1,0,0,0,0,0,0,1],
+    [1,1,1,1,1,1,1,1],
+    [0,1,1,1,1,1,1,0],
+    [0,0,1,0,0,1,0,0]
+  ];
+
+  return (
+    <div className={`inline-block ${className}`}>
+      {pixels.map((row, y) => (
+        <div key={y} className="flex">
+          {row.map((pixel, x) => (
+            <div
+              key={x}
+              className={`${pixel ? 'bg-blue-400' : 'bg-transparent'}`}
+              style={{ width: `${size/8}px`, height: `${size/8}px` }}
+            />
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+const PixelRocket = ({ className = "", size = 32 }) => {
+  const pixels = [
+    [0,0,0,1,1,0,0,0],
+    [0,0,1,1,1,1,0,0],
+    [0,1,1,1,1,1,1,0],
+    [1,1,1,1,1,1,1,1],
+    [1,1,0,1,1,0,1,1],
+    [1,1,1,1,1,1,1,1],
+    [0,1,1,1,1,1,1,0],
+    [0,0,1,0,0,1,0,0]
+  ];
+
+  return (
+    <div className={`inline-block ${className}`}>
+      {pixels.map((row, y) => (
+        <div key={y} className="flex">
+          {row.map((pixel, x) => (
+            <div
+              key={x}
+              className={`${pixel ? 'bg-red-400' : 'bg-transparent'}`}
+              style={{ width: `${size/8}px`, height: `${size/8}px` }}
+            />
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+const PixelDiamond = ({ className = "", size = 24 }) => {
+  const pixels = [
+    [0,0,1,1,1,0,0],
+    [0,1,1,1,1,1,0],
+    [1,1,1,1,1,1,1],
+    [1,1,1,0,1,1,1],
+    [1,1,1,1,1,1,1],
+    [0,1,1,1,1,1,0],
+    [0,0,1,1,1,0,0]
+  ];
+
+  return (
+    <div className={`inline-block ${className}`}>
+      {pixels.map((row, y) => (
+        <div key={y} className="flex">
+          {row.map((pixel, x) => (
+            <div
+              key={x}
+              className={`${pixel ? 'bg-cyan-400' : 'bg-transparent'}`}
+              style={{ width: `${size/7}px`, height: `${size/7}px` }}
+            />
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+const PixelBook = ({ className = "", size = 24 }) => {
+  const pixels = [
+    [1,1,1,1,1,1,1],
+    [1,0,0,0,0,0,1],
+    [1,0,1,1,1,0,1],
+    [1,0,1,0,1,0,1],
+    [1,0,1,1,1,0,1],
+    [1,0,0,0,0,0,1],
+    [1,1,1,1,1,1,1]
+  ];
+
+  return (
+    <div className={`inline-block ${className}`}>
+      {pixels.map((row, y) => (
+        <div key={y} className="flex">
+          {row.map((pixel, x) => (
+            <div
+              key={x}
+              className={`${pixel ? 'bg-purple-400' : 'bg-transparent'}`}
+              style={{ width: `${size/7}px`, height: `${size/7}px` }}
+            />
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+const RotatingCube = () => {
+  const [rotation, setRotation] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRotation(prev => prev + 1);
+    }, 50);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="flex justify-center items-center h-16 mb-4">
+      <div
+        className="w-12 h-12 relative"
+        style={{
+          transform: `rotateX(${rotation}deg) rotateY(${rotation * 1.5}deg)`,
+          transformStyle: 'preserve-3d',
+          transition: 'transform 0.05s linear'
+        }}
+      >
+        <div className="absolute w-12 h-12 bg-gray-600 border-2 border-gray-400" style={{ transform: 'translateZ(24px)' }} />
+        <div className="absolute w-12 h-12 bg-gray-500 border-2 border-gray-400" style={{ transform: 'translateZ(-24px)' }} />
+        <div className="absolute w-12 h-12 bg-gray-500 border-2 border-gray-400" style={{ transform: 'rotateY(90deg) translateZ(24px)' }} />
+        <div className="absolute w-12 h-12 bg-gray-500 border-2 border-gray-400" style={{ transform: 'rotateY(-90deg) translateZ(24px)' }} />
+        <div className="absolute w-12 h-12 bg-gray-600 border-2 border-gray-400" style={{ transform: 'rotateX(90deg) translateZ(24px)' }} />
+        <div className="absolute w-12 h-12 bg-gray-500 border-2 border-gray-400" style={{ transform: 'rotateX(-90deg) translateZ(24px)' }} />
+      </div>
+    </div>
+  );
+};
+
+const BlinkingText = ({ children, className = "" }) => {
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setVisible(prev => !prev);
+    }, 800);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <span className={`transition-opacity duration-300 ${className} ${visible ? 'opacity-100' : 'opacity-0'}`}>
+      {children}
+    </span>
+  );
+};
+
+const CryptoAddress = ({ label, address, currency }) => {
+  const [copied, setCopied] = useState(false);
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(address);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
+    }
+  };
+
+  return (
+    <div className="bg-gray-800/90 border-2 border-gray-600 p-4 mb-4 font-mono backdrop-blur-sm">
+      <div className="text-gray-300 text-sm mb-2 flex items-center gap-2">
+        <PixelCoin size={18} />
+        {label} ({currency})
+      </div>
+      <div className="flex items-center justify-between">
+        <div className="text-gray-100 text-xs break-all mr-2 select-all">{address}</div>
+        <button
+          onClick={copyToClipboard}
+          className="bg-gray-600 hover:bg-gray-500 border border-gray-500 px-2 py-1 text-xs text-gray-200 flex items-center gap-1 transition-colors duration-200 hover:shadow-lg"
+        >
+          <Copy size={12} />
+          {copied ? 'COPIED!' : 'COPY'}
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const CounterDisplay = () => {
+  const [count, setCount] = useState(1337);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCount(prev => prev + Math.floor(Math.random() * 3));
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="bg-black/80 border-2 border-gray-500 p-2 text-center font-mono backdrop-blur-sm">
+      <div className="text-green-400 text-sm font-bold flex items-center justify-center gap-2">
+        <PixelArt size={16} />
+        VISITORS: {count.toLocaleString()}
+        <PixelArt size={16} />
+      </div>
+    </div>
+  );
+};
+
+const GlitchText = ({ children, className = "" }) => {
+  const [glitch, setGlitch] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setGlitch(true);
+      setTimeout(() => setGlitch(false), 200);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <span className={`${className} ${glitch ? 'animate-pulse text-green-400' : ''} transition-colors duration-200`}>
+      {children}
+    </span>
+  );
+};
+
+const MatrixRain = () => {
+  const [drops, setDrops] = useState([]);
+
+  useEffect(() => {
+    const chars = '01アカサタナハマヤラワガザダバパイキシチニヒミリヰギジヂビピウクスツヌフムユルグズヅブプエケセテネヘメレゲゼデベペオコソトノホモヨロヲゴゾドボポヴッン';
+    const newDrops = [];
+
+    for (let i = 0; i < 15; i++) {
+      newDrops.push({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        char: chars[Math.floor(Math.random() * chars.length)],
+        speed: Math.random() * 2 + 1
+      });
+    }
+
+    setDrops(newDrops);
+
+    const interval = setInterval(() => {
+      setDrops(prev => prev.map(drop => ({
+        ...drop,
+        y: drop.y > 100 ? -10 : drop.y + drop.speed,
+        char: chars[Math.floor(Math.random() * chars.length)]
+      })));
+    }, 100);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
+      {drops.map(drop => (
+        <div
+          key={drop.id}
+          className="absolute text-green-400 font-mono text-xs"
+          style={{
+            left: `${drop.x}%`,
+            top: `${drop.y}%`,
+            transform: `translateY(-${drop.y}px)`
+          }}
+        >
+          {drop.char}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default function ACRSCryptoPage() {
+  return (
+    <div className="min-h-screen bg-gray-900 text-gray-200 font-mono relative overflow-hidden">
+      <DotGrid />
+      <MatrixRain />
+
+      {/* Header */}
+      <div className="bg-black/95 border-b-2 border-gray-600 p-4 backdrop-blur-md relative z-10">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-gray-100 mb-2 flex items-center justify-center gap-2" style={{ userSelect: 'none' }}>
+              <PixelArt size={32} />
+              <GlitchText>.:::ALASKA COLLEGE REMEDIATION SYSTEM:::.</GlitchText>
+              <PixelArt size={32} />
+            </h1>
+            <div className="text-gray-400 text-sm" style={{ userSelect: 'none' }}>
+              <BlinkingText>*** OFFICIAL CRYPTO DONATION PORTAL ***</BlinkingText>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Navigation */}
+      <div className="bg-gray-800/95 border-b border-gray-600 p-2 backdrop-blur-md relative z-10">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex justify-center gap-4 text-sm">
+            <span className="text-gray-400">[</span>
+            <a href="#donations" className="text-gray-300 hover:text-green-400 underline transition-colors duration-200">DONATE</a>
+            <span className="text-gray-400">|</span>
+            <a href="https://discord.gg/acrs" className="text-gray-300 hover:text-green-400 underline transition-colors duration-200" target="_blank" rel="noopener noreferrer">CONTACT</a>
+            <span className="text-gray-400">]</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="max-w-4xl mx-auto p-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+          {/* Left Column */}
+          <div className="lg:col-span-2">
+            <div className="flex justify-center items-center h-32 mb-8">
+              <PixelRocket className="mr-4" size={48} />
+              <RotatingCube />
+              <PixelComputer className="ml-4" size={48} />
+            </div>
+
+            <div className="bg-gray-800/95 border-2 border-gray-600 p-6 mb-6 backdrop-blur-md shadow-2xl">
+              <h2 className="text-xl font-bold text-gray-100 mb-4 text-center flex items-center justify-center gap-2" style={{ userSelect: 'none' }}>
+                <PixelCoin size={28} />
+                -= WELCOME TO THE FUTURE OF EDUCATION =-
+                <PixelCoin size={28} />
+              </h2>
+
+              <div className="space-y-4 text-sm">
+                <p className="text-gray-300 leading-relaxed">
+                  The Alaska College Remediation System (ACRS) is revolutionizing higher education
+                  through blockchain technology and decentralized learning protocols. Our mission
+                  is to provide accessible, high-quality remedial education to students across Alaska
+                  and beyond.
+                </p>
+
+                <div className="bg-black/90 border border-gray-500 p-3 backdrop-blur-sm shadow-inner">
+                  <div className="text-green-400 text-center font-bold flex items-center justify-center gap-2" style={{ userSelect: 'none' }}>
+                    <PixelArt size={20} />
+                    <BlinkingText>&gt;&gt; CRYPTO DONATIONS ACCEPTED &lt;&lt;</BlinkingText>
+                    <PixelArt size={20} />
+                  </div>
+                </div>
+
+                <p className="text-gray-300 leading-relaxed">
+                  By supporting ACRS with cryptocurrency, you're investing in the future of education.
+                  All donations go directly towards developing our cutting-edge learning management
+                  systems and supporting students in need.
+                </p>
+              </div>
+            </div>
+
+            {/* Donation Addresses */}
+            <div id="donations" className="bg-gray-800/95 border-2 border-gray-600 p-6 mb-6 backdrop-blur-md shadow-2xl">
+              <h3 className="text-lg font-bold text-gray-100 mb-4 text-center flex items-center justify-center gap-2" style={{ userSelect: 'none' }}>
+                <PixelDiamond size={24} />
+                DONATION ADDRESSES
+                <PixelDiamond size={24} />
+              </h3>
+
+              <CryptoAddress
+                label="Bitcoin" 
+                address="bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh"
+                currency="BTC"
+              />
+
+              <CryptoAddress
+                label="Ethereum" 
+                address="0x742d35Cc6634C0532925a3b8D02A2d3F25b0C7A7"
+                currency="ETH"
+              />
+
+              <CryptoAddress
+                label="Litecoin"
+                address="LTC1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4"
+                currency="LTC"
+              />
+
+              <div className="text-center mt-4">
+                <BlinkingText className="text-yellow-400 font-bold flex items-center justify-center gap-2">
+                  <PixelCoin size={20} />
+                  !!! HODL FOR EDUCATION !!!
+                  <PixelCoin size={20} />
+                </BlinkingText>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column */}
+          <div className="space-y-6">
+            <CounterDisplay />
+
+            <div className="bg-gray-800/95 border-2 border-gray-600 p-4 backdrop-blur-md shadow-2xl">
+              <h3 className="text-lg font-bold text-gray-100 mb-3 text-center flex items-center justify-center gap-2">
+                <PixelComputer size={20} />
+                STATS
+                <PixelComputer size={20} />
+              </h3>
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Students Helped:</span>
+                  <span className="text-green-400 font-bold">2,847</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Courses Available:</span>
+                  <span className="text-green-400 font-bold">156</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Success Rate:</span>
+                  <span className="text-green-400 font-bold">94.7%</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Crypto Raised:</span>
+                  <span className="text-green-400 font-bold">₿12.45</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gray-800/95 border-2 border-gray-600 p-4 backdrop-blur-md shadow-2xl">
+              <h3 className="text-lg font-bold text-gray-100 mb-3 text-center flex items-center justify-center gap-2">
+                <PixelBook size={20} />
+                QUICK LINKS
+                <PixelBook size={20} />
+              </h3>
+              <div className="space-y-2 text-sm">
+                <div className="flex items-center gap-2 group">
+                  <BookOpen size={16} className="text-gray-400 group-hover:text-green-400 transition-colors duration-200" />
+                  <a href="#" className="text-gray-300 hover:text-green-400 underline transition-colors duration-200">Course Catalog</a>
+                </div>
+                <div className="flex items-center gap-2 group">
+                  <Users size={16} className="text-gray-400 group-hover:text-green-400 transition-colors duration-200" />
+                  <a href="#" className="text-gray-300 hover:text-green-400 underline transition-colors duration-200">Student Portal</a>
+                </div>
+                <div className="flex items-center gap-2 group">
+                  <Award size={16} className="text-gray-400 group-hover:text-green-400 transition-colors duration-200" />
+                  <a href="#" className="text-gray-300 hover:text-green-400 underline transition-colors duration-200">Certifications</a>
+                </div>
+                <div className="flex items-center gap-2 group">
+                  <Globe size={16} className="text-gray-400 group-hover:text-green-400 transition-colors duration-200" />
+                  <a href="#" className="text-gray-300 hover:text-green-400 underline transition-colors duration-200">Alumni Network</a>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-black/90 border-2 border-gray-500 p-4 text-center backdrop-blur-md shadow-2xl">
+              <div className="text-gray-400 text-xs mb-2">POWERED BY:</div>
+              <div className="text-green-400 font-bold flex items-center justify-center gap-2">
+                <PixelRocket size={20} />
+                BLOCKCHAIN
+              </div>
+              <div className="text-green-400 font-bold">TECHNOLOGY</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div className="bg-black/95 border-t-2 border-gray-600 p-4 mt-8 backdrop-blur-md relative z-10">
+        <div className="max-w-4xl mx-auto text-center text-sm text-gray-400">
+          <div className="mb-2">
+            © 2024 Alaska College Remediation System | Est. 2004
+          </div>
+          <div className="flex justify-center items-center gap-2">
+            <BlinkingText>***</BlinkingText>
+            <span>CRYPTO DONATIONS WELCOME</span>
+            <BlinkingText>***</BlinkingText>
+          </div>
+          <div className="mt-2 text-xs flex items-center justify-center gap-2">
+            <PixelDiamond size={16} />
+            "Educating Alaska, One Block at a Time"
+            <PixelDiamond size={16} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
