@@ -18,9 +18,7 @@
     "build-css": "tailwindcss -i ./src/input.css -o ./src/output.css",
     "watch-css": "tailwindcss -i ./src/input.css -o ./src/output.css --watch",
     "start": "npm run watch-css & react-scripts start",
-    "build": "npm run build-css && react-scripts build",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "build": "npm run build-css && react-scripts build"
   },
   "browserslist": {
     "production": [
