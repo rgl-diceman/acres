@@ -15,12 +15,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "build-css": "tailwindcss -i ./src/input.css -o ./src/output.css",
-    "watch-css": "tailwindcss -i ./src/input.css -o ./src/output.css --watch",
     "start": "npm run watch-css & react-scripts start",
-    "build": "npm run build-css && react-scripts build",
+    "build": "tailwindcss -i ./src/input.css -o ./src/output.css && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "watch-css": "tailwindcss -i ./src/input.css -o ./src/output.css --watch"
   },
   "browserslist": {
     "production": [

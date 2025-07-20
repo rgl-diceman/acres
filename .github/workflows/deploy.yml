@@ -1,4 +1,4 @@
-name: Deploy React App to Pages
+name: Deploy ACRES
 
 on:
   push:
@@ -27,7 +27,11 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
-      - name: Build
+      - name: Install Tailwind CSS globally
+        run: npm install -g tailwindcss
+      - name: Build CSS
+        run: npm run build-css
+      - name: Build React app
         run: npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v5
